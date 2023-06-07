@@ -11,7 +11,7 @@ top of rows that contain only zeros.
 def rref(A, b):
 
     rows, cols = A.shape
-    print(f"This matrix has {rows} Rows and {cols} Columns")
+    # print(f"This matrix has {rows} Rows and {cols} Columns")
 
     pivot_cols = []
 
@@ -57,12 +57,13 @@ def compute_soln_set(A, b, pivot_cols):
     row, cols = A.shape
     free_num = cols-len(pivot_cols)
     
-    soln = np.zeros((cols, free_num+1))
     
     # compute free var map
     free_cols = [i for i in range(cols) if i not in pivot_cols]
         
-    # fill for pivot variables
+    # all the pivot variables are dependent on constants and the free variables
+    soln = np.zeros((cols, free_num+1))
+    
     r=0
     for i in range(len(pivot_cols)):
         c = pivot_cols[i]
