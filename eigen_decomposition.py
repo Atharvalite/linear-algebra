@@ -39,3 +39,4 @@ def simultaneous_orthogonalization(A, tol=0.0001):
             break
     return
 
+
