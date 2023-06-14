@@ -42,6 +42,8 @@ def plu_decomposition(A:np.array):
             u[i2,:] = temp
             permutes.append([i1,i2])
         
+        if u[p,p]==0:
+            return (None,None,None,None)
         
         for r in range(p+1, lim):
             l[r,p]+=u[r,p]*(l[p,p]/u[p,p])
@@ -60,31 +62,6 @@ def plu_decomposition(A:np.array):
         p_mat[i1,:] = p_mat[i2,:]
         p_mat[i2,:] = temp
     
-    return (p_mat, l, u)
+    return (p_mat, l, u, len(permutes))
 
 
-a = np.array([
-    [2, 4, 2],
-    [4, -10, 2],
-    [1, 2, 4]
-    ], dtype='float64')
-        
-
-p, l, u = plu_decomposition(a)
-
-
-print("P: ")
-print(p)
-
-print("L: ")
-print(l)
-
-print("U: ")
-print(u) 
-   
-
-print(p.T@l@u) 
-    
-'''
-2424−102124
-'''   
